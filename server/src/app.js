@@ -4,8 +4,8 @@ import e from "express";
 
 const app = e();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" ,message:"server is running!", time: new Date().toISOString()});
 });
 
 export default app;
