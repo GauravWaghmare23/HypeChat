@@ -21,7 +21,6 @@ export async function getMe(req, res) {
 
   } catch (err) {
     console.error("getMe error:", err);
-
     return res.status(500).json({
       status: "error",
       message: "Internal Server Error",
@@ -88,7 +87,6 @@ export async function authCallback(req, res) {
 
   } catch (error) {
     console.error("authCallback error:", error);
-
     return res.status(500).json({
       status: "error",
       message: "Internal Server Error",
