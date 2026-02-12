@@ -1,5 +1,5 @@
 import { clerkClient, getAuth } from "@clerk/express";
-import UserModel from "../models/User";
+import UserModel from "../models/User.js";
 
 export async function getMe(req, res) {
   try {
@@ -10,7 +10,7 @@ export async function getMe(req, res) {
     if (!user) {
       return res.status(404).json({
         status: "error",
-        message: "User not found",
+        message: "User not found, please register",
       });
     }
 
@@ -55,8 +55,7 @@ export async function authCallback(req, res) {
         });
       }
 
-      try {
-        const createdUser = await UserModel.create({
+      const createdUser = new UserModel({
           clerkId,
           name: clerkUser.firstName
             ? `${clerkUser.firstName} ${clerkUser.lastName || ""}`.trim()
@@ -64,6 +63,8 @@ export async function authCallback(req, res) {
           email: primaryEmail,
           avatar: clerkUser.imageUrl,
         });
+
+        await createdUser.save();
 
         user = {
           _id: createdUser._id,
@@ -73,11 +74,6 @@ export async function authCallback(req, res) {
           createdAt: createdUser.createdAt,
         };
 
-      } catch (createErr) {
-        user = await UserModel
-          .findOne({ clerkId })
-          .select("_id name email avatar createdAt")
-      }
     }
 
     return res.status(200).json({

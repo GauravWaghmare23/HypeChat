@@ -1,6 +1,6 @@
 import e from "express";
-import { protectRoute } from "../middlewares/auth.middleware";
-import { authCallback, getMe } from "../controllers/auth.controller";
+import { protectRoute } from "../middlewares/auth.middleware.js";
+import { authCallback, getMe } from "../controllers/auth.controller.js";
 
 const router = e.Router();
 
