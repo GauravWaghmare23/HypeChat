@@ -5,8 +5,6 @@ const userSchema = new mongoose.Schema(
     clerkId: {
       type: String,
       required: true,
-      index: true,
-      unique: true,
     },
     name: {
       type: String,
@@ -18,8 +16,6 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
-      index: true,
       trim: true,
       lowercase: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,

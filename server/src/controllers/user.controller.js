@@ -13,13 +13,6 @@ export async function getUsers(req,res){
         }
 
         const users = await UserModel.find({_id:{$ne:userId}}).select("_id name email avatar");
-        
-        if (users.length === 0) {
-            return res.status(201).json({
-                status: "error",
-                message: "User not found",
-            });
-        }
 
         return res.status(200).json({
             status: "success",

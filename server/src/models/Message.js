@@ -30,5 +30,5 @@ const messageSchema = new mongoose.Schema(
 
 messageSchema.index({ chat: 1, createdAt: 1 });
 
-const Message = mongoose.models.Message || mongoose.model("Message", messageSchema);
-export default Message;
+const MessageModel = mongoose.models.Message || mongoose.model("Message", messageSchema);
+export default MessageModel;

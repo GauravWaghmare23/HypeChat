@@ -30,6 +30,6 @@ const chatSchema = new mongoose.Schema(
 
 chatSchema.index({ participants: 1 },{ unique: true });
 
-const Chat = mongoose.models.Chat || mongoose.model("Chat", chatSchema);
+const ChatModel = mongoose.models.Chat || mongoose.model("Chat", chatSchema);
 
-export default Chat;
+export default ChatModel;
