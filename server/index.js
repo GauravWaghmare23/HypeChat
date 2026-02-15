@@ -2,12 +2,15 @@ import app from "./src/app.js";
 import { connectDB } from "./src/config/database.js";
 import { createServer } from "http";
 import logger from "./src/utils/logger.js";
+import { initializeSocket } from "./src/utils/socket.js";
 
 const PORT = process.env.PORT || 4000;
 
 logger.info("Initializing HTTP server", { port: PORT });
 
 const httpServer = createServer(app);
+
+initializeSocket(httpServer);
 
 connectDB()
   .then(() => {
